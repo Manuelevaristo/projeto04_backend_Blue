@@ -1,0 +1,231 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Personagens Scooby-Doo",
+    "description": "API para CRUD de personagens da serie Scooby Doo",
+    "termsOfService": "",
+    "contact": {
+      "email": "findaevaristo@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/personagens",
+      "description": "API de teste"
+    },
+    {
+      "url": "https://api-elgeladon.herokuapp.com/personagens",
+      "description": "API de produção"
+    }
+  ],
+  "paths": {
+    "/all-personagens": {
+      "get": {
+        "summary": "Lista de todas as personagens",
+        "description": "Rota responsável por listar todas personagens",
+        "tags": ["Personagens"],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Personagens"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/personagem/{id}": {
+      "get": {
+        "summary": "Busca uma personagem pelo ID",
+        "description": "Rota responsável por buscar uma personagem pelo ID",
+        "tags": ["Personagens"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da personagem para a busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Personagens"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create-personagem": {
+      "post": {
+        "summary": "Cadastrar uma personagen",
+        "description": "Rota responsável por cadastrar uma personagen",
+        "tags": ["Personagens"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Personagens"
+              },
+              "examples": {
+                "Personagens": {
+                  "value": {
+                    "nome": "Matthew Lyn Lillard",
+                    "personagem": "Salsicha Rogers (Shaggy) Editad",
+                    "descricao": "Salsicha Rogers, que tem o nome de Norville, mas o detesta e prefere ser chamado de Salsicha, é o dono de Scooby-Doo. É um sujeito magricelo e de aparência desleixada (seu apelido em inglês — Shaggy — quer dizer \"desgrenhado\"), sempre com um cavanhaque por fazer e com olheiras. Assim como seu cão, Salsicha é covarde, medroso e faminto, dividindo com Scooby a paixão por guloseimas, sanduíches, sorvetes e outras delícias. Tem pavor dos fantasmas e é o primeiro a não querer participar dos casos. Sempre se dá mal com os vilões, mas acaba dando sorte e os capturando com ajuda de Scooby. É o mais engraçado da turma e o mais criativo quando tem que se esconder dos fantasmas. É dele o bordão que dá título ao desenho em inglês — \"Scooby-Doo, cadê você?\" — e ainda a frase \"Que tal um lanchinho, Scooby?\". Salsicha é o mais velho da turma como podem ver em Scooby-Doo 3.",
+                    "imagem": "https://br.web.img2.acsta.net/c_310_420/pictures/19/06/25/20/05/4707243.jpg",
+                    "idade": 52,
+                    "nacionalidade": "Americano",
+                    "carreira": 26
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad Request"
+      },
+      "201": {
+        "description": "Created",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "$ref": "#/components/schemas/Paletas"
+            }
+          }
+        }
+      }
+    },
+    "/update-personagem/{id}": {
+      "put": {
+        "summary": "Editar uma personagem pelo ID",
+        "description": "Rota responsável por editar uma personagem pelo ID",
+        "tags": ["Personagens"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da personagem para a busca",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Personagens"
+              },
+              "examples": {
+                "Personagens": {
+                  "value": {
+                    "nome": "Matthew Lyn Lillard",
+                    "personagem": "Salsicha Rogers (Shaggy) Editad",
+                    "descricao": "Salsicha Rogers, que tem o nome de Norville, mas o detesta e prefere ser chamado de Salsicha, é o dono de Scooby-Doo. É um sujeito magricelo e de aparência desleixada (seu apelido em inglês — Shaggy — quer dizer \"desgrenhado\"), sempre com um cavanhaque por fazer e com olheiras. Assim como seu cão, Salsicha é covarde, medroso e faminto, dividindo com Scooby a paixão por guloseimas, sanduíches, sorvetes e outras delícias. Tem pavor dos fantasmas e é o primeiro a não querer participar dos casos. Sempre se dá mal com os vilões, mas acaba dando sorte e os capturando com ajuda de Scooby. É o mais engraçado da turma e o mais criativo quando tem que se esconder dos fantasmas. É dele o bordão que dá título ao desenho em inglês — \"Scooby-Doo, cadê você?\" — e ainda a frase \"Que tal um lanchinho, Scooby?\". Salsicha é o mais velho da turma como podem ver em Scooby-Doo 3.",
+                    "imagem": "https://br.web.img2.acsta.net/c_310_420/pictures/19/06/25/20/05/4707243.jpg",
+                    "idade": 52,
+                    "nacionalidade": "Americano",
+                    "carreira": 26
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/personagens"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete-personagem/{id}": {
+      "delete": {
+        "summary": "Apagar uma personagem pelo ID",
+        "description": "Rota responsável por apagar uma personagem pelo ID",
+        "tags": ["Personagens"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da personagem para deleção",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schema": {
+      "Pesonagens": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "personagem": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "imagem": {
+            "type": "string"
+          },
+          "idade": {
+            "type": "number"
+          },
+          "nacionalidade": {
+            "type": "string"
+          },
+          "carreira": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
