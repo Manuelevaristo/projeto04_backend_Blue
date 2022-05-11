@@ -11,7 +11,7 @@ const validId = (req, res, next) => {
 const validObjectBody = (req, res, next) => {
   const personage = req.body;
 
-  if (personage || personage.name || personage.image) {
+  if (!personage || !personage.name || !personage.image) {
     return res
       .status(400)
       .send({ message: 'Envie o todos os campos da personagem!' });
