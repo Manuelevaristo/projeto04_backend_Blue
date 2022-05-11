@@ -10,17 +10,17 @@ const authMiddleware = require('../middlewares/auth.middleware');
 
 route.get(
   '/personages',
-  authMiddleware,controllerPersonages.findAllPersonagesController,
+  authMiddleware,controllerPersonages.allPersonagesController,
 );
 
 route.get(
   '/personages/find/:id',
   authMiddleware,
   validId,
-  controllerPersonages.findByIdPersonageController,
+  controllerPersonages.personageByIdController,
 );
 route.get(
-  '/personage/search',
+  '/personages/search',
   authMiddleware,
   controllerPersonages.searchPersonageController,
 );
@@ -38,7 +38,7 @@ route.put(
   controllerPersonages.updatePersonageController,
 );
 route.delete(
-  '/personages/delete-personage/:id',
+  '/personages/delete/:id',
   authMiddleware,
   validId,
   controllerPersonages.deletePersonageController,

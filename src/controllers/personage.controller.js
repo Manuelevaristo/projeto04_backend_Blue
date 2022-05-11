@@ -1,16 +1,16 @@
 const personagesService = require('../services/personage.service');
 const mongoose = require('mongoose');
 
-const findAllPersonagesController = async (req, res) => {
-  const personages = await personagesService.findAllPersonagesService();
+const allPersonagesController = async (req, res) => {
+  const personages = await personagesService.allPersonagesService();
   if (personages.length == 0) {
     return res.status(404).send({ message: 'Lista de personagens vazia' });
   }
   res.send(personages);
 };
-const findByIdPersonageController = async (req, res) => {
+const personageByIdController = async (req, res) => {
   const parametroId = req.params.id;
-  const choosePersonage = await personagesService.findByIdPersonageService(
+  const choosePersonage = await personagesService.personageByIdService(
     parametroId,
   );
   if (!choosePersonage) {
@@ -52,8 +52,8 @@ const searchPersonageController = async (req, res) => {
 };
 
 module.exports = {
-  findAllPersonagesController,
-  findByIdPersonageController,
+  allPersonagesController,
+  personageByIdController,
   createPersonageController,
   updatePersonageController,
   deletePersonageController,
