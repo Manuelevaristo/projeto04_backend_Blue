@@ -20,7 +20,7 @@ const findByIdPersonageController = async (req, res) => {
 };
 
 const createPersonageController = async (req, res) => {
-  res.status(201).send(await personagesService.PersonageService(req.body));
+  res.status(201).send(await personagesService.createPersonageService(req.body));
 };
 
 const updatePersonageController = async (req, res) => {
