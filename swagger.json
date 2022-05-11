@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://api-rickandmorty-backand-m03.onrender.com",
+      "url": "https://apirickandmorty-backend03-bluedtech.onrender.com",
       "description": "API de produção"
     },
     {
