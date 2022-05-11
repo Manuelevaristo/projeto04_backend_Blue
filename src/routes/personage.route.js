@@ -17,7 +17,7 @@ route.get(
   '/personages/find/:id',
   authMiddleware,
   validId,
-  controllerPersonages.findByIdPersonagemController,
+  controllerPersonages.findByIdPersonageController,
 );
 route.get(
   '/personage/search',

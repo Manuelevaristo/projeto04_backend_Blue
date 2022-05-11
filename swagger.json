@@ -1,9 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Personagens Scooby-Doo",
-    "description": "API para CRUD de personagens da serie Scooby Doo",
-    "termsOfService": "",
+    "title": "API Rick and Morty",
+    "description": "API para CRUD de personagens da animação Rick and Morty",
     "contact": {
       "email": "findaevaristo@gmail.com"
     },
@@ -11,20 +10,20 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/personagens",
-      "description": "API de teste"
+      "url": "https://api-rickandmorty-backand-m03.onrender.com",
+      "description": "API de produção"
     },
     {
-      "url": "https://api-elgeladon.herokuapp.com/personagens",
-      "description": "API de produção"
+      "url": "http://localhost:3000",
+      "description": "API de teste"
     }
   ],
   "paths": {
-    "/all-personagens": {
+    "/users": {
       "get": {
-        "summary": "Lista de todas as personagens",
-        "description": "Rota responsável por listar todas personagens",
-        "tags": ["Personagens"],
+        "summary": "Lista de todos os usuários",
+        "description": "Rota responsável por listar todos os usuários",
+        "tags": ["Users"],        
         "responses": {
           "404": {
             "description": "Not Found"
@@ -34,10 +33,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Personagens"
-                  }
+                  "type": "array"
                 }
               }
             }
@@ -45,111 +41,25 @@
         }
       }
     },
-    "/personagem/{id}": {
-      "get": {
-        "summary": "Busca uma personagem pelo ID",
-        "description": "Rota responsável por buscar uma personagem pelo ID",
-        "tags": ["Personagens"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Id da personagem para a busca",
-            "required": true
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          },
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "$ref": "#/components/schemas/Personagens"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/create-personagem": {
+    "/users/create": {
       "post": {
-        "summary": "Cadastrar uma personagen",
-        "description": "Rota responsável por cadastrar uma personagen",
-        "tags": ["Personagens"],
+        "summary": "Cadastrar Usuário",
+        "description": "Rota responsável por cadastrar um usuário",
+        "tags": ["Users"],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Personagens"
+                "$ref": "#/components/schemas/User"
               },
               "examples": {
-                "Personagens": {
+                "Usuário": {
                   "value": {
-                    "nome": "Matthew Lyn Lillard",
-                    "personagem": "Salsicha Rogers (Shaggy) Editad",
-                    "descricao": "Salsicha Rogers, que tem o nome de Norville, mas o detesta e prefere ser chamado de Salsicha, é o dono de Scooby-Doo. É um sujeito magricelo e de aparência desleixada (seu apelido em inglês — Shaggy — quer dizer \"desgrenhado\"), sempre com um cavanhaque por fazer e com olheiras. Assim como seu cão, Salsicha é covarde, medroso e faminto, dividindo com Scooby a paixão por guloseimas, sanduíches, sorvetes e outras delícias. Tem pavor dos fantasmas e é o primeiro a não querer participar dos casos. Sempre se dá mal com os vilões, mas acaba dando sorte e os capturando com ajuda de Scooby. É o mais engraçado da turma e o mais criativo quando tem que se esconder dos fantasmas. É dele o bordão que dá título ao desenho em inglês — \"Scooby-Doo, cadê você?\" — e ainda a frase \"Que tal um lanchinho, Scooby?\". Salsicha é o mais velho da turma como podem ver em Scooby-Doo 3.",
-                    "imagem": "https://br.web.img2.acsta.net/c_310_420/pictures/19/06/25/20/05/4707243.jpg",
-                    "idade": 52,
-                    "nacionalidade": "Americano",
-                    "carreira": 26
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "responses": {
-      "400": {
-        "description": "Bad Request"
-      },
-      "201": {
-        "description": "Created",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "$ref": "#/components/schemas/Paletas"
-            }
-          }
-        }
-      }
-    },
-    "/update-personagem/{id}": {
-      "put": {
-        "summary": "Editar uma personagem pelo ID",
-        "description": "Rota responsável por editar uma personagem pelo ID",
-        "tags": ["Personagens"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Id da personagem para a busca",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Personagens"
-              },
-              "examples": {
-                "Personagens": {
-                  "value": {
-                    "nome": "Matthew Lyn Lillard",
-                    "personagem": "Salsicha Rogers (Shaggy) Editad",
-                    "descricao": "Salsicha Rogers, que tem o nome de Norville, mas o detesta e prefere ser chamado de Salsicha, é o dono de Scooby-Doo. É um sujeito magricelo e de aparência desleixada (seu apelido em inglês — Shaggy — quer dizer \"desgrenhado\"), sempre com um cavanhaque por fazer e com olheiras. Assim como seu cão, Salsicha é covarde, medroso e faminto, dividindo com Scooby a paixão por guloseimas, sanduíches, sorvetes e outras delícias. Tem pavor dos fantasmas e é o primeiro a não querer participar dos casos. Sempre se dá mal com os vilões, mas acaba dando sorte e os capturando com ajuda de Scooby. É o mais engraçado da turma e o mais criativo quando tem que se esconder dos fantasmas. É dele o bordão que dá título ao desenho em inglês — \"Scooby-Doo, cadê você?\" — e ainda a frase \"Que tal um lanchinho, Scooby?\". Salsicha é o mais velho da turma como podem ver em Scooby-Doo 3.",
-                    "imagem": "https://br.web.img2.acsta.net/c_310_420/pictures/19/06/25/20/05/4707243.jpg",
-                    "idade": 52,
-                    "nacionalidade": "Americano",
-                    "carreira": 26
+                    "name": "Rick Sanche",
+                    "username": "rickexample",
+                    "email": "example@example.com",
+                    "password": "12345",
+                    "avatar": "https://rickandmortyapi.com/api/character/avatar/420.jpeg"
                   }
                 }
               }
@@ -160,13 +70,12 @@
           "400": {
             "description": "Bad Request"
           },
-          "200": {
-            "description": "OK",
+          "201": {
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "$ref": "#/components/schemas/personagens"
+                  "type": "object"
                 }
               }
             }
@@ -174,16 +83,125 @@
         }
       }
     },
-    "/delete-personagem/{id}": {
-      "delete": {
-        "summary": "Apagar uma personagem pelo ID",
-        "description": "Rota responsável por apagar uma personagem pelo ID",
-        "tags": ["Personagens"],
+    "/auth/login": {
+      "post": {
+        "summary": "fazer Login",
+        "description": "Rota responsável por logar o usuário",
+        "tags": ["Auth"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "examples": {
+                "User": {
+                  "value": {
+                    "email": "example@example.com",
+                    "password": "12345"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"            
+          }
+        }
+      }
+    },
+    "/personages/create": {
+      "post": {
+        "summary": "Cadastrar um personagem",
+        "description": "Rota responsável por cadastrar um personagem",
+        "tags": ["Personage"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Personage"
+              },
+              "examples": {
+                "Character": {
+                  "value": {
+                    "name": "Rick",
+                    "image": "https://rickandmortyapi.com/api/character/avatar/782.jpeg"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Personage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/personages": {
+      "get": {
+        "summary": "Lista de todos os personagens",
+        "description": "Rota responsável por listar todos os personagens",
+        "tags": ["Personages"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Personage"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/personages/find/{id}": {
+      "get": {
+        "summary": "Busca um personagem pelo ID",
+        "description": "Rota responsável por buscar um personagem pelo ID",
+        "tags": ["Personages"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Id da personagem para deleção",
+            "description": "Id do personagem para a busca",
             "required": true
           }
         ],
@@ -191,37 +209,186 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Personage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/personages/update/{id}": {
+      "put": {
+        "summary": "Editar um personagem pelo ID",
+        "description": "Rota responsável por editar um personagem pelo ID",
+        "tags": ["Personages"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do personagem para a busca",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Personage"
+              },
+              "examples": {
+                "Character": {
+                  "value": {
+                    "name": "Rick",
+                    "image": "https://rickandmortyapi.com/api/character/avatar/446.jpeg"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Personage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/personages/delete/{id}": {
+      "delete": {
+        "summary": "Apagar um personagem pelo ID",
+        "description": "Rota responsável por apagar um personagem pelo ID",
+        "tags": ["Personages"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do personagem para deleção",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/personages/search": {
+      "get": {
+        "summary": "Busca um personagem pelo nome",
+        "description": "Rota responsável por buscar um personagem pelo nome",
+        "tags": ["Personages"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "description": "Busca de personagens pelo nome.",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Personage"
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   },
   "components": {
-    "schema": {
-      "Pesonagens": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "User": {
+        "type":"object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Character": {
         "type": "object",
         "properties": {
-          "nome": {
+          "name": {
             "type": "string"
           },
-          "personagem": {
-            "type": "string"
-          },
-          "descricao": {
-            "type": "string"
-          },
-          "imagem": {
-            "type": "string"
-          },
-          "idade": {
-            "type": "number"
-          },
-          "nacionalidade": {
-            "type": "string"
-          },
-          "carreira": {
+          "image": {
             "type": "string"
           }
         }
